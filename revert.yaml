@@ -1,5 +1,6 @@
 - name: Revert to saved game
   hosts: all
+  become: yes
   tasks:
 
     - name: Stop game server
