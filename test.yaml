@@ -1,0 +1,8 @@
+- name: test_foobar
+  hosts: all
+  tasks:
+
+    - name: Create test file
+    file:
+      path: ~/test_foobar
+      state: directory
