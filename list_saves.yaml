@@ -1,0 +1,6 @@
+- name: List saves
+  hosts: all
+  tasks:
+
+    - name: List saves script
+      ansible.builtin.script: ./list_saves.sh
