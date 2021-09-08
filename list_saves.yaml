@@ -3,4 +3,4 @@
   tasks:
 
     - name: Run list saves script
-      ansible.builtin.script: list_saves.sh
+      ansible.builtin.script: ./scripts/list_saves.sh
