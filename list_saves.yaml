@@ -2,13 +2,5 @@
   hosts: all
   tasks:
 
-    - name: Deploy list saves script
-      ansible.builtin.copy:
-        src: ./list_saves.sh
-        dest: /opt/factorio-saves/list_saves.sh
-        owner: factorio
-        group: factorio
-        mode: '0744'
-
     - name: Run list saves script
-      ansible.builtin.script: /opt/factorio-saves/list_saves.sh
+      ansible.builtin.script: list_saves.sh
