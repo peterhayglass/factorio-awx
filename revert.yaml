@@ -3,18 +3,42 @@
   become: yes
   tasks:
 
-    - name: Stop game server
+    - name: Stop game service
       ansible.builtin.systemd:
         state: stopped
         name: factorio
+
+    - name: Wait for archiver service to handle the savegame created upon stopping the service
+      wait_for:
+        timeout: "6"
     
-    - name: Find save game
+    - name: Find save game to revert to
       ansible.builtin.find:
         paths:
           - /opt/factorio-saves/saves
           - /opt/factorio-saves/archive
         patterns: "{{ game_id }}.zip"
-    
+      register: savefile
+       
+    - name: Find savegames to remove from working directory
+      ansible.builtin.find:
+        paths: /opt/factorio/saves
+        patterns: "*.zip"
+      register: working_saves
+
+    - name: Clear working directory saves
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ working_saves.files }}"
+
+    - name: Copy savegame for revert into working directory
+      ansible.builtin.copy:
+        remote_src: yes
+        src: "{{ item.path }}"
+        dest: /opt/factorio/saves
+      with_items: "{{ savefile.files }}"
+
     - name: Start game server
       ansible.builtin.systemd:
         state: started
