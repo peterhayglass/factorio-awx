@@ -8,8 +8,13 @@
         state: stopped
         name: factorio
     
-    - name: Overwrite save game
-      ansible.builtin.scripts: ./scripts/revert.sh --savegame {{ game_id }}
+    - name: Find save game
+      ansible.builtin.find:
+        paths:
+          - /opt/factorio-saves/saves
+          - /opt/factorio-saves/archive
+        patterns: "{{ game_id }}.zip"
+
     
     - name: Start game server
       ansible.builtin.systemd:

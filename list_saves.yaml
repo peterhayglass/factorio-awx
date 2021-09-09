@@ -3,7 +3,4 @@
   tasks:
 
     - name: List save game files
-      ansible.builtin.find:
-        paths: 
-          - /opt/factorio-saves/saves
-          - /opt/factorio-saves/archive
+      ansible.builtin.script: ./scripts/list_saves.sh
