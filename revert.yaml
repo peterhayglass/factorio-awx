@@ -14,7 +14,6 @@
           - /opt/factorio-saves/saves
           - /opt/factorio-saves/archive
         patterns: "{{ game_id }}.zip"
-
     
     - name: Start game server
       ansible.builtin.systemd:
