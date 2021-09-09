@@ -2,10 +2,12 @@
 echo RECENT:
 cd /opt/factorio-saves/saves
 for FILE in *; do 
+    [ -e "$filename" ] || continue
     echo `date -d @"${FILE%.*}"` : /opt/factorio-saves/saves/${FILE%.*}.zip
 done
 echo OLDER:
 cd /opt/factorio-saves/archive
 for FILE in *; do
+    [ -e "$filename" ] || continue
     echo `date -d @"${FILE%.*}"` : /opt/factorio-saves/archive/${FILE%.*}.zip
 done
