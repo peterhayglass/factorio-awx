@@ -1,0 +1,9 @@
+- name: Restart factorio server
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Restart factorio systemd service
+      ansible.builtin.systemd:
+        state: restarted
+        name: factorio

@@ -9,8 +9,7 @@
         name: factorio
     
     - name: Overwrite save game
-      command: rm -r /opt/factorio/saves
-      command: cp `find /opt/factorio-saves/ -name '{{ game }}.zip'`
+      ansible.builtin.scripts: ./scripts/revert.sh --savegame {{ game_id }}
     
     - name: Start game server
       ansible.builtin.systemd:
