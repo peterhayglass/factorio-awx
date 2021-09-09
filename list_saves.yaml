@@ -2,5 +2,8 @@
   hosts: all
   tasks:
 
-    - name: Run list saves script
-      ansible.builtin.script: ./scripts/list_saves.sh
+    - name: List save game files
+      ansible.builtin.find:
+        paths: 
+          - /opt/factorio-saves/saves
+          - /opt/factorio-saves/archive

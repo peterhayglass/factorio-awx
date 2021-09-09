@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo RECENT:
 cd /opt/factorio-saves/saves
 for FILE in *; do 
