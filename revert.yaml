@@ -36,7 +36,7 @@
       ansible.builtin.copy:
         remote_src: yes
         src: "{{ item.path }}"
-        dest: /opt/factorio/saves
+        dest: /opt/factorio/saves/game.zip
       with_items: "{{ savefile.files }}"
 
     - name: Start game server
